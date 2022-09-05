@@ -1,9 +1,9 @@
-import { Button, Input, Text } from '@rneui/themed';
-import React, { useContext, useState } from 'react';
-import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { useContext } from 'react';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
 import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
+import NavLink from '../components/NavLink';
 import Spacer from '../components/Spacer';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,11 +22,10 @@ const SignupScreen = () => {
         buttonText='Sign Up'
       />
       <Spacer>
-        <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-          <Text style={styles.link}>
-            Already have an account? Signin instead.
-          </Text>
-        </TouchableOpacity>
+        <NavLink
+          text='Already have an account? Sign in instead!'
+          routeName='Signin'
+        />
       </Spacer>
     </View>
   );
@@ -45,8 +44,5 @@ const styles = StyleSheet.create({
     color: 'red',
     marginLeft: 15,
     marginTop: 10,
-  },
-  link: {
-    color: 'blue',
   },
 });

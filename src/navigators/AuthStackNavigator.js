@@ -1,5 +1,3 @@
-import { Text, View } from 'react-native';
-
 import React from 'react';
 import SigninScreen from '../screens/SigninScreen';
 import SignupScreen from '../screens/SignupScreen';
@@ -15,7 +13,11 @@ const AuthStackNavigator = () => {
         component={SignupScreen}
         options={{ headerShown: false }}
       />
-      <AuthStack.Screen name='Signin' component={SigninScreen} />
+      <AuthStack.Screen
+        name='Signin'
+        component={SigninScreen}
+        options={{ headerShown: false }}
+      />
     </AuthStack.Navigator>
   );
 };
