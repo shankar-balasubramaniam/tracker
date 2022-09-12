@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Context as AuthContext } from '../context/AuthContext';
@@ -8,8 +8,14 @@ import Spacer from '../components/Spacer';
 import { useNavigation } from '@react-navigation/native';
 
 const SigninScreen = () => {
-  const { state, signin } = useContext(AuthContext);
+  const { state, signin, clearErrorMessage } = useContext(AuthContext);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const listener = navigation.addListener('blur', clearErrorMessage);
+    return listener;
+  }, []);
+
   return (
     <View style={styles.container}>
       <AuthForm

@@ -4,15 +4,17 @@ import { Context as AuthContext } from '../context/AuthContext';
 import AuthStackNavigator from './AuthStackNavigator';
 import MainBottomTabNavigator from './MainBottomTabNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const RootStack = createNativeStackNavigator();
 const RootNavigator = () => {
-  const { state } = useContext(AuthContext);
+  const { state, tryLocalSignIn } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(state.token);
-  }, [state.token]);
+    tryLocalSignIn();
+  }, []);
+
+  if (state.loading) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
